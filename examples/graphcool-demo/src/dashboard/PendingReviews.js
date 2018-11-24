@@ -40,7 +40,7 @@ const styles = theme => ({
     },
     listItemText: {
         overflowY: 'hidden',
-        height: '4em',
+        height: '4.75em',
         display: '-webkit-box',
         WebkitLineClamp: 2,
         WebkitBoxOrient: 'vertical',
@@ -66,7 +66,7 @@ const PendingReviews = ({
                 {translate('pos.dashboard.pending_reviews')}
             </Typography>
             <Typography
-                variant="headline"
+                variant="h5"
                 component="h2"
                 className={classes.value}
             >

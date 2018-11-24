@@ -1,7 +1,12 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 import { Pagination } from './Pagination';
+
+const setWindowWidth = (width) => {
+    global.innerWidth = width;
+    global.dispatchEvent(new Event('resize'));
+};
 
 describe('<Pagination />', () => {
     it('should display a pagination limit when there is no result', () => {
@@ -51,40 +56,38 @@ describe('<Pagination />', () => {
     });
 
     describe('mobile', () => {
+        beforeAll(() => {
+            setWindowWidth(600); // small < 960
+        });
+
         it('should render a <TablePagination> without rowsPerPage choice', () => {
-            const wrapper = shallow(
+            const wrapper = mount(
                 <Pagination
                     page={2}
                     perPage={5}
                     total={15}
                     translate={x => x}
                 />
-            )
-                .shallow()
-                .shallow()
-                .setProps({ width: 'xs' })
-                .shallow()
-                .shallow();
-            const pagination = wrapper.find('WithStyles(TablePagination)');
+            );
+            const pagination = wrapper.find('TablePagination');
             expect(pagination.prop('rowsPerPageOptions')).toEqual([]);
         });
     });
     describe('desktop', () => {
+        beforeAll(() => {
+            setWindowWidth(960); // medium >= 960
+        });
+
         it('should render a <TablePagination> with rowsPerPage choice', () => {
-            const wrapper = shallow(
+            const wrapper = mount(
                 <Pagination
                     page={2}
                     perPage={5}
                     total={15}
                     translate={x => x}
-                    width={2}
                 />
-            )
-                .shallow()
-                .shallow()
-                .shallow()
-                .shallow();
-            const pagination = wrapper.find('WithStyles(TablePagination)');
+            );
+            const pagination = wrapper.find('TablePagination');
             expect(pagination.prop('rowsPerPageOptions')).toEqual([5, 10, 25]);
         });
     });

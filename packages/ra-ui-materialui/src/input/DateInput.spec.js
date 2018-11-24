@@ -1,4 +1,3 @@
-import assert from 'assert';
 import { shallow } from 'enzyme';
 import React from 'react';
 
@@ -11,24 +10,19 @@ describe('<DateInput />', () => {
             <DateInput source="foo" meta={{}} input={input} />
         );
         const datePicker = wrapper.find('TextField');
-        assert.equal(datePicker.length, 1);
-        assert.equal(datePicker.first().prop('type'), 'date');
+        expect(datePicker).toHaveLength(1);
+        expect(datePicker.first().prop('type')).toBe('date');
     });
 
     it('should call props `input.onChange` method when changed', () => {
         const input = { value: null, onChange: jest.fn(), onBlur: () => {} };
         const wrapper = shallow(
             <DateInput source="foo" input={input} meta={{}} />
-        )
-            .shallow()
-            .find('WithStyles(Input)')
-            .shallow()
-            .shallow()
-            .find('input');
+        );
         wrapper.simulate('change', {
             target: { value: '2010-01-04' },
         });
-        assert.equal(input.onChange.mock.calls[0][0], '2010-01-04');
+        expect(input.onChange).toHaveBeenCalledWith('2010-01-04');
     });
 
     describe('error message', () => {
@@ -41,7 +35,7 @@ describe('<DateInput />', () => {
                 />
             );
             const DatePicker = wrapper.find('TextField');
-            assert.equal(DatePicker.prop('helperText'), '');
+            expect(DatePicker).not.toHaveProperty('helperText');
         });
 
         it('should not be displayed if field has been touched but is valid', () => {
@@ -53,19 +47,20 @@ describe('<DateInput />', () => {
                 />
             );
             const DatePicker = wrapper.find('TextField');
-            assert.equal(DatePicker.prop('helperText'), '');
+            expect(DatePicker).not.toHaveProperty('helperText');
         });
 
         it('should be displayed if field has been touched and is invalid', () => {
+            const metaProps = { touched: true, error: 'Required field.' };
             const wrapper = shallow(
                 <DateInput
                     source="foo"
                     input={{ value: null }}
-                    meta={{ touched: true, error: 'Required field.' }}
+                    meta={metaProps}
                 />
             );
             const DatePicker = wrapper.find('TextField');
-            assert.equal(DatePicker.prop('helperText'), 'Required field.');
+            expect(DatePicker.prop('helperText')).toBe(metaProps.error);
         });
     });
 });

@@ -14,7 +14,7 @@ import sanitizeRestProps from './sanitizeRestProps';
  * You can customize the `type` props (which defaults to "text").
  * Note that, due to a React bug, you should use `<NumberField>` instead of using type="number".
  * @example
- * <TextInput source="email" type="email" />
+ * <TextInput source="email" type="email" variant="outlined" />
  * <NumberInput source="nb_views" />
  *
  * The object passed as `options` props is passed to the <ResettableTextField> component

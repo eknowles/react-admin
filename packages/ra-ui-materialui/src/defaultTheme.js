@@ -8,6 +8,7 @@ export default {
         },
     },
     typography: {
+        useNextVariants: true,
         title: {
             fontWeight: 400,
         },

@@ -590,8 +590,8 @@ You may want to display additional information on the side of the list. Use the 
 ```jsx
 const Aside = () => (
     <div style={{ width: 200, margin: '1em' }}>
-        <Typography variant="title">Post details</Typography>
-        <Typography variant="body1">
+        <Typography variant="h6">Post details</Typography>
+        <Typography variant="body2">
             Posts will only be published one an editor approves them
         </Typography>
     </div>
@@ -625,8 +625,8 @@ That means you can display additional details of the current list in the aside c
 ```jsx
 const Aside = ({ data, ids }) => (
     <div style={{ width: 200, margin: '1em' }}>
-        <Typography variant="title">Posts stats</Typography>
-        <Typography variant="body1">
+        <Typography variant="h6">Posts stats</Typography>
+        <Typography variant="body2">
             Total views: {ids.map(id => data[id]).reduce((sum, post) => sum + post.views)}
         </Typography>
     </div>

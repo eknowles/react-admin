@@ -1,15 +1,16 @@
 import React from 'react';
-import assert from 'assert';
 import { shallow } from 'enzyme';
 import { BooleanField } from './BooleanField';
+import FalseIcon from '@material-ui/icons/Clear';
+import TrueIcon from '@material-ui/icons/Done';
 
 describe('<BooleanField />', () => {
     it('should display tick if value is true', () => {
         const wrapper = shallow(
             <BooleanField record={{ published: true }} source="published" />
         );
-        assert.ok(wrapper.first().is('WithStyles(Typography)'));
-        assert.equal(wrapper.first().find('pure(Done)').length, 1);
+        expect(wrapper.first().is('WithStyles(Typography)')).toBe(true);
+        expect(wrapper.find(TrueIcon)).toHaveLength(1);
     });
 
     it('should display cross if value is false', () => {
@@ -17,8 +18,8 @@ describe('<BooleanField />', () => {
             <BooleanField record={{ published: false }} source="published" />
         );
 
-        assert.ok(wrapper.first().is('WithStyles(Typography)'));
-        assert.equal(wrapper.first().find('pure(Clear)').length, 1);
+        expect(wrapper.first().is('WithStyles(Typography)')).toBe(true);
+        expect(wrapper.find(FalseIcon)).toHaveLength(1);
     });
 
     it('should not display anything if value is null', () => {
@@ -26,26 +27,25 @@ describe('<BooleanField />', () => {
             <BooleanField record={{ published: null }} source="published" />
         );
 
-        assert.equal(wrapper.first().children().length, 0);
+        expect(wrapper.first().children()).toHaveLength(0);
     });
 
-    it('should use custom className', () =>
-        assert.deepEqual(
-            shallow(
-                <BooleanField
-                    record={{ foo: true }}
-                    source="foo"
-                    className="foo"
-                />
-            ).prop('className'),
-            'foo'
-        ));
+    it('should use custom className', () => {
+        const wrapper = shallow(
+            <BooleanField
+                record={{ foo: true }}
+                source="foo"
+                className="foo"
+            />
+        );
+        expect(wrapper.hasClass('foo')).toBe(true);
+    });
 
     it('should handle deep fields', () => {
         const wrapper = shallow(
             <BooleanField record={{ foo: { bar: true } }} source="foo.bar" />
         );
-        assert.ok(wrapper.first().is('WithStyles(Typography)'));
-        assert.equal(wrapper.first().find('pure(Done)').length, 1);
+        expect(wrapper.first().is('WithStyles(Typography)')).toBe(true);
+        expect(wrapper.find(TrueIcon)).toHaveLength(1);
     });
 });

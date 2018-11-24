@@ -25,9 +25,18 @@ const lightTheme = {
     },
 };
 
+const getPalette = (isDark) => isDark ? darkTheme : lightTheme;
+
 export default connect(
     state => ({
-        theme: state.theme === 'dark' ? darkTheme : lightTheme,
+        theme: {
+            typography: {
+                useNextVariants: true,
+            },
+            palette: {
+                ...(getPalette(state.theme === 'dark').palette),
+            }
+        },
     }),
     {}
 )(CustomLayout);

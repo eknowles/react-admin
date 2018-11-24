@@ -65,7 +65,7 @@ const BulkActionsToolbar = ({
             {...sanitizeListRestProps(rest)}
         >
             <div className={classes.title}>
-                <Typography color="inherit" variant="subheading">
+                <Typography color="inherit" variant="subtitle1">
                     {translate(label, {
                         _: label,
                         smart_count: selectedIds.length,

@@ -117,7 +117,7 @@ export class SimpleFormIterator extends Component {
                         >
                             <li className={classes.line}>
                                 <Typography
-                                    variant="body1"
+                                    variant="body2"
                                     className={classes.index}
                                 >
                                     {index + 1}

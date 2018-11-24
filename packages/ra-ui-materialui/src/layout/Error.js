@@ -81,7 +81,7 @@ const Error = ({
                 </ExpansionPanel>
             )}
             <div className={classes.toolbar}>
-                <Button variant="raised" icon={<History />} onClick={goBack}>
+                <Button variant="contained" icon={<History />} onClick={goBack}>
                     {translate('ra.action.back')}
                 </Button>
             </div>

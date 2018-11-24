@@ -72,7 +72,7 @@ export class SaveButton extends Component {
             saving,
             submitOnEnter,
             translate,
-            variant = 'raised',
+            variant = 'contained',
             ...rest
         } = this.props;
 

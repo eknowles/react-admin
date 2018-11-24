@@ -55,7 +55,7 @@ export const NumberField = ({
         return (
             <Typography
                 component="span"
-                body1="body1"
+                variant="body2"
                 className={className}
                 {...sanitizeRestProps(rest)}
             >
@@ -67,7 +67,7 @@ export const NumberField = ({
     return (
         <Typography
             component="span"
-            body1="body1"
+            variant="body2"
             className={className}
             {...sanitizeRestProps(rest)}
         >

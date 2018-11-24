@@ -8,7 +8,7 @@ import { translate } from 'ra-core';
 
 const PaginationLimit = ({ translate }) => (
     <CardContent>
-        <Typography variant="body1">
+        <Typography variant="body2">
             {translate('ra.navigation.no_results')}
         </Typography>
     </CardContent>

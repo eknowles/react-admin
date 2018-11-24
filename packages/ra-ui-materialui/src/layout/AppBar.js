@@ -85,7 +85,7 @@ const AppBar = ({
                     />
                 </IconButton>
                 <Typography
-                    variant="title"
+                    variant="h6"
                     color="inherit"
                     className={classes.title}
                     id="react-admin-title"
